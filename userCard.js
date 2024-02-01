@@ -48,6 +48,8 @@ class UserCard extends HTMLElement {
         this.showInfo = true;
 
         // shadow DOM
+        // self-contained components encapsulates styles and markup (not affected by global styling)
+        // mode: open, allow access in chrome dev tools
         this.attachShadow({ mode: 'open' });
         this.shadowRoot.appendChild(template.content.
             cloneNode(true));
@@ -77,11 +79,13 @@ class UserCard extends HTMLElement {
         }
     }
 
+    // insert element into the DOM
     connectedCallback() {
         this.shadowRoot.querySelector('#toggle-info').
         addEventListener('click', () => this.toggleInfo());
     }
 
+    // remove element from the DOM
     disconnectedCallback() {
         this.shadowRoot.querySelector('#toggle-info').
         removeEventListener();
